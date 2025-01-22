@@ -96,12 +96,15 @@ struct ballView: View {
             VStack {
                 ZStack {
                     Circle()
-                        .fill(color.opacity(0.5))
+                        .fill(color.opacity(0.4))
                         .frame(width: diameter, height: diameter)
                     Image(systemName: icon)
+                        .foregroundColor(color)
                     
                 }
                 Text(title)
+                    .font(.system(size: 14))
+                    .padding(.top, 10)
             }
         }
     }
