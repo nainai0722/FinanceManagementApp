@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State var isAnimating:Bool = false
+    @State var isAnimating2:Bool = false
     var body: some View {
         NavigationView{
             ZStack(alignment:.bottomTrailing){
@@ -19,20 +20,29 @@ struct HomeView: View {
                 VStack{
                     TitleView()
                         .opacity(isAnimating ? 1 : 0)
-                        .animation(.interpolatingSpring(stiffness: 100, damping: 10).delay(0.5), value: isAnimating)
+                        .animation(.spring().delay(0), value: isAnimating)
         
                     DepositAmountView()
+                        .opacity(isAnimating ? 1 : 0)
+                        .animation(.spring().delay(0.2), value: isAnimating)
                     
-                    ScrollCard()
+                    ScrollCards()
+                        .opacity(isAnimating ? 1 : 0)
+                        .animation(.spring().delay(0.4), value: isAnimating)
                     
                     TransactionHistoryView()
+                        .opacity(isAnimating ? 1 : 0)
+                        .animation(.spring().delay(0.6), value: isAnimating)
                 
                 }
                 FloatPointView()
+                    .offset(x: 0, y:isAnimating2 ? 0 : 160)
+                    .animation(.easeOut(duration: 0.3 ).delay(1), value: isAnimating2)
             }
         }
         .onAppear(){
             isAnimating.toggle( )
+            isAnimating2.toggle( )
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
@@ -138,7 +148,7 @@ struct HorizontalCardView: View {
     }
 }
 
-struct ScrollCard: View {
+struct ScrollCards: View {
     @State var pageNumber = 2
     @State var previousOffset: CGSize = CGSize(width: 0, height: 0)
     @State var offset:CGSize = CGSize(width: 0, height: 0)
@@ -231,10 +241,15 @@ struct TransactionRow: View {
 
 struct TransactionHistoryView: View {
     var body: some View {
-        ScrollView{
-            VStack(alignment: .leading){
-                ForEach(0..<10){ _ in
-                    TransactionRow()
+        VStack(alignment:.leading) {
+            Text("過去の取引履歴")
+                .font(.system(size: 18))
+                .padding(.leading,20)
+            ScrollView{
+                VStack(alignment: .leading){
+                    ForEach(0..<10){ _ in
+                        TransactionRow()
+                    }
                 }
             }
         }
