@@ -57,8 +57,10 @@ private struct TitleView: View {
     @State var isAnimating:Bool = false
     var body: some View {
         HStack{
-            Image(systemName: "list.bullet.indent")
-                .font(.system(size: 20))
+            NavigationLink(destination: CategoriesGridView()){
+                Image(systemName: "list.bullet.indent")
+                    .font(.system(size: 20))
+            }
             Spacer()
             Text("Finance")
                 .bold()
@@ -85,8 +87,10 @@ struct DepositAmountView: View {
             }
             Spacer()
             
-            Image(systemName: "person.circle")
-                .font(.system(size: 30))
+            NavigationLink(destination: MyProfileView()){
+                Image(systemName: "person.circle")
+                    .font(.system(size: 30))
+            }
         }
         .foregroundColor(.white)
         .padding(.top, 10)
@@ -217,6 +221,7 @@ struct TransactionRow: View {
     var subTitle = "2025/10/01"
     var price = "1244円"
     var body: some View {
+        NavigationLink(destination: ReportsView()){
             HStack{
                 VStack(alignment: .leading, spacing: 10){
                     Text(title)
@@ -236,6 +241,7 @@ struct TransactionRow: View {
             .padding()
             .background(Color.white.opacity(0.04))
             .cornerRadius(5)
+        }
     }
 }
 
@@ -266,9 +272,11 @@ struct FloatPointView: View {
                     Circle()
                         .fill(Color(red: 81/255, green: 91/255, blue: 251/255))
                         .frame(width: 60, height: 60)
-                    Image(systemName: "plus")
-                        .font(.system(size: 24))
-                        .foregroundColor(.white)
+                    NavigationLink(destination: AddIncomeView()){
+                        Image(systemName: "plus")
+                            .font(.system(size: 24))
+                            .foregroundColor(.white)
+                    }
                 }
                 .padding(.trailing,20)
                 .padding(.bottom,20)

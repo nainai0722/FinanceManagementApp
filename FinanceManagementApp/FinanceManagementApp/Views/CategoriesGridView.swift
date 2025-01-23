@@ -61,6 +61,8 @@ struct CategoriesGridView: View {
             }
             .foregroundColor(.white)
         }
+        .navigationTitle("")
+        .navigationBarHidden(true)
     }
 }
 
