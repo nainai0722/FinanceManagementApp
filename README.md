@@ -1,4 +1,4 @@
-ホーム画面
+ホーム画面その他スクリーンショット
 <p align="center">
   <img src="Images/image1.png" alt="キャプチャ1" width="100">
   <img src="Images/image2.png" alt="キャプチャ2" width="100">
